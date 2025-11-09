@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>VehicleReg Pro — Register Your Vehicle Quickly</title>
+<meta name="description" content="VehicleReg Pro — Fast-track, 100% online vehicle registration for private and business customers." />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --primary-blue: #0A6BE6;
+    --secondary-orange: #FF8800;
+    --bg-light-blue: #f5f8fc;
+    --text-dark: #1f2937;
+}
+body {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color: var(--text-dark);
+    background-color: #ffffff;
+    scroll-behavior: smooth;
+}
+.hero-title { font-family: 'Poppins', 'Inter', sans-serif; font-weight:700; font-size: clamp(32px, 5vw, 48px); line-height:1.1; letter-spacing: -0.01em; }
+.section-title { font-family: 'Poppins', 'Inter', sans-serif; font-size: clamp(24px, 3vw, 36px); font-weight:700; line-height:1.1; }
+.hero-bg { background-image: linear-gradient(90deg, #ffffff 50%, var(--bg-light-blue) 100%); padding-top: 5rem; padding-bottom: 5rem; }
+.feature-circle { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.feature-blue { background-color: #2EA1FF; }
+.feature-green { background-color: #00BF5D; }
+.feature-orange { background-color: #FF8800; }
+.feature-purple { background-color: #9C27B0; }
+.offer-card { background-color: #f9fafb; border-radius: 12px; padding: 1.5rem; min-height: 180px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.offer-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+.nav-link:hover { color: var(--primary-blue); text-decoration: underline; }
+button:hover { opacity: 0.9; }
+.modal-bg { background-color: rgba(0,0,0,0.5); }
+input, textarea { outline: none; }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+        <a href="#home" class="flex items-center gap-3">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="bg-[var(--primary-blue)] p-1.5 rounded-lg" aria-hidden="true">
+                <path d="M10 20H4C3.46957 20 2.96086 19.7893 2.58579 19.4142C2.21071 19.0391 2 18.5304 2 18V6C2 5.46957 2.21071 4.96086 2.58579 4.58579C2.96086 4.21071 3.46957 4 4 4H10C10.5304 4 11.0391 4.21071 11.4142 4.58579C11.7893 4.96086 12 5.46957 12 6V18C12 18.5304 11.7893 19.0391 11.4142 19.4142C11.0391 19.7893 10.5304 20 10 20Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 10H20" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 14H18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="18" cy="18" r="3" fill="white"/>
+            </svg>
+            <div class="text-xl font-semibold">VehicleReg Pro</div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
+            <a class="nav-link text-sm font-medium transition" href="#home">Home</a>
+            <a class="nav-link text-sm font-medium transition" href="#services">Services</a>
+            <a class="nav-link text-sm font-medium transition" href="#how">How It Works</a>
+            <a class="nav-link text-sm font-medium transition" href="#vehicles">Vehicles</a>
+            <a class="nav-link text-sm font-medium transition" href="#reserve">Reserve Plate</a>
+            <a class="nav-link text-sm font-medium transition" href="#contact">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+            <div class="flex items-center border border-gray-300 rounded-md p-1">
+                <span class="text-sm font-semibold px-2">EN</span>
+                <span class="text-sm text-gray-500 border-l border-gray-300 px-2">DE</span>
+            </div>
+            <a href="#book" class="px-4 py-2 rounded-md text-white font-semibold text-sm" style="background-color:var(--secondary-orange);">Book Appointment</a>
+            <button id="mobileToggle" class="md:hidden p-2 ml-1 rounded-md border border-gray-200" aria-label="Open mobile menu">
+                <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg">
+        <div class="flex flex-col px-5 py-4 gap-3">
+            <a class="nav-link text-sm font-medium transition" href="#home">Home</a>
+            <a class="nav-link text-sm font-medium transition" href="#services">Services</a>
+            <a class="nav-link text-sm font-medium transition" href="#how">How It Works</a>
+            <a class="nav-link text-sm font-medium transition" href="#vehicles">Vehicles</a>
+            <a class="nav-link text-sm font-medium transition" href="#reserve">Reserve Plate</a>
+            <a class="nav-link text-sm font-medium transition" href="#contact">Contact</a>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero-bg text-center">
+    <div class="max-w-4xl mx-auto px-5">
+        <h1 class="hero-title mb-4">Register Your Vehicle <strong>Quickly and Securely</strong></h1>
+        <p class="text-lg text-gray-600 mb-10">Fast-track approval, 100% online, for both private and business customers. No waiting, no hassle.</p>
+
+        <div class="flex justify-center gap-6 mb-10">
+            <a href="#register" class="px-8 py-3 rounded-lg text-white font-bold text-lg transition shadow-xl hover:shadow-2xl" style="background-color:var(--primary-blue);">Register Vehicle</a>
+            <a href="#book" class="px-8 py-3 rounded-lg text-white font-bold text-lg transition shadow-xl hover:shadow-2xl" style="background-color:var(--secondary-orange);">Book Appointment</a>
+        </div>
+
+        <!-- Plate Check -->
+        <div class="flex justify-center gap-2 mb-10">
+            <input id="plateInput" type="text" placeholder="Enter desired license plate" class="border border-gray-300 rounded-l-md px-4 py-2 w-60">
+            <button id="checkPlate" class="px-4 py-2 bg-[var(--primary-blue)] text-white rounded-r-md font-semibold">Check Availability</button>
+        </div>
+
+        <div class="flex justify-center gap-12 text-sm font-medium mt-10">
+            <div class="flex flex-col items-center gap-3">
+                <div class="feature-circle feature-blue"><i data-lucide="check" class="w-6 h-6"></i></div>
+                <span>Fast Track</span>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+                <div class="feature-circle feature-green"><i data-lucide="user" class="w-6 h-6"></i></div>
+                <span>100% Digital</span>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+                <div class="feature-circle feature-orange"><i data-lucide="lock" class="w-6 h-6"></i></div>
+                <span>Secure</span>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+                <div class="feature-circle feature-purple"><i data-lucide="star" class="w-6 h-6"></i></div>
+                <span>Premium</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-20">
+    <div class="max-w-6xl mx-auto px-5">
+        <h2 class="section-title text-center mb-3">What We Offer</h2>
+        <p class="text-center text-gray-600 mb-12">Professional vehicle registration services designed for modern customers</p>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="offer-card shadow-lg">
+                <div class="feature-circle feature-blue mb-4"><i data-lucide="refresh-cw" class="w-6 h-6"></i></div>
+                <h3 class="text-xl font-semibold mb-2">Fast Track Approval</h3>
+                <p class="text-gray-600">Get your vehicle registered in under 24 hours with our expedited processing service.</p>
+            </div>
+            <div class="offer-card shadow-lg">
+                <div class="feature-circle feature-green mb-4"><i data-lucide="monitor" class="w-6 h-6"></i></div>
+                <h3 class="text-xl font-semibold mb-2">Digital Registration</h3>
+                <p class="text-gray-600">Complete the entire registration process online without visiting any government offices.</p>
+            </div>
+            <div class="offer-card shadow-lg">
+                <div class="feature-circle feature-orange mb-4"><i data-lucide="shield" class="w-6 h-6"></i></div>
+                <h3 class="text-xl font-semibold mb-2">No ID Required for Residents</h3>
+                <p class="text-gray-600">Streamlined process for local residents with simplified documentation requirements.</p>
+            </div>
+            <div class="offer-card shadow-lg">
+                <div class="feature-circle feature-purple mb-4"><i data-lucide="lock" class="w-6 h-6"></i></div>
+                <h3 class="text-xl font-semibold mb-2">Secure Data Handling</h3>
+                <p class="text-gray-600">Bank-level encryption and GDPR compliance ensure your personal data stays protected.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-5">
+        <h2 class="section-title text-center mb-3">How It Works</h2>
+        <p class="text-center text-gray-600 mb-12">Simple 4-step process to get your vehicle registered quickly and efficiently</p>
+        <div class="grid md:grid-cols-4 gap-8 text-center">
+            <div class="flex flex-col items-center">
+                <div class="feature-circle feature-blue mb-4 text-2xl font-bold">1</div>
+                <h3 class="text-lg font-semibold mb-2">Submit Request</h3>
+                <p class="text-gray-600">Fill out our simple online form with your vehicle details and personal information.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="feature-circle bg-blue-400 mb-4 text-2xl font-bold">2</div>
+                <h3 class="text-lg font-semibold mb-2">Upload Documents</h3>
+                <p class="text-gray-600">Securely upload required documents through our encrypted platform.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="feature-circle feature-green mb-4 text-2xl font-bold">3</div>
+                <h3 class="text-lg font-semibold mb-2">Verification & Approval</h3>
+                <p class="text-gray-600">Our experts review your application and handle all government communications.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="feature-circle bg-orange-400 mb-4 text-2xl font-bold">4</div>
+                <h3 class="text-lg font-semibold mb-2">Get Digital Registration</h3>
+                <p class="text-gray-600">Receive your official vehicle registration documents digitally within 24 hours.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Vehicles Section -->
+<section id="vehicles" class="py-20">
+    <div class="max-w-6xl mx-auto px-5">
+        <h2 class="section-title text-center mb-3">Supported Vehicles</h2>
+        <p class="text-center text-gray-600 mb-12">We handle registration for all types of vehicles, from personal cars to commercial fleets</p>
+        <div class="flex justify-center gap-16 text-center flex-wrap">
+            <div class="flex flex-col items-center gap-3">
+                <div class="feature-circle feature-blue"><i data-lucide="car" class="w-7 h-7"></i></div>
+                <h4 class="font-semibold mt-2">Cars</h4>
+                <p class="text-sm text-gray-600">Personal and company vehicles</p>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+                <div class="feature-circle feature-green"><i data-lucide="bike" class="w-7 h-7"></i></div>
+                <h4 class="font-semibold mt-2">Motorcycles</h4>
+                <p class="text-sm text-gray-600">All motorcycle types and scooters</p>
+            </div>
+            <div class="flex flex-col items-center gap-3">
+                <div class="feature-circle feature-orange"><i data-lucide="truck" class="w-7 h-7"></i></div>
+                <h4 class="font-semibold mt-2">Commercial</h4>
+                <p class="text-sm text-gray-600">Commercial fleets and vans</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reserve Plate Section -->
+<section id="reserve" class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-5 text-center">
+        <h2 class="section-title mb-3">Reserve Your License Plate</h2>
+        <p class="text-gray-600 mb-6">Check your desired license plate and reserve it instantly online</p>
+        <div class="flex justify-center gap-2">
+            <input id="reserveInput" type="text" placeholder="Enter license plate" class="border border-gray-300 rounded-l-md px-4 py-2 w-60">
+            <button id="reservePlate" class="px-4 py-2 bg-[var(--secondary-orange)] text-white rounded-r-md font-semibold">Reserve Now</button>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20">
+    <div class="max-w-4xl mx-auto px-5">
+        <h2 class="section-title text-center mb-6">Contact Us</h2>
+        <form class="flex flex-col gap-4">
+            <input type="text" placeholder="Your Name" class="border border-gray-300 px-4 py-2 rounded-md w-full">
+            <input type="email" placeholder="Email Address" class="border border-gray-300 px-4 py-2 rounded-md w-full">
+            <textarea placeholder="Message" class="border border-gray-300 px-4 py-2 rounded-md w-full"></textarea>
+            <button type="submit" class="px-6 py-2 bg-[var(--primary-blue)] text-white rounded-md font-semibold">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="fixed inset-0 hidden items-center justify-center modal-bg z-50">
+    <div class="bg-white rounded-lg p-6 max-w-sm w-full text-center shadow-xl">
+        <h3 id="modalTitle" class="text-lg font-bold mb-4"></h3>
+        <p id="modalMessage" class="text-gray-700 mb-6"></p>
+        <button id="closeModal" class="px-6 py-2 bg-[var(--primary-blue)] text-white rounded-md font-semibold">Close</button>
+    </div>
+</div>
+
+<script>
+lucide.createIcons();
+
+// Mobile menu toggle
+const mobileToggle = document.getElementById('mobileToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileToggle.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+
+// Plate availability simulation
+const checkBtn = document.getElementById('checkPlate');
+const plateInput = document.getElementById('plateInput');
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modalTitle');
+const modalMessage = document.getElementById('modalMessage');
+const closeModal = document.getElementById('closeModal');
+const unavailablePlates = ["ABC123", "XYZ999", "VIP007"];
+
+checkBtn.addEventListener('click', () => {
+    const plate = plateInput.value.trim().toUpperCase();
+    if (!plate) { modalTitle.textContent = "Error"; modalMessage.textContent = "Please enter a license plate number!"; }
+    else if (unavailablePlates.includes(plate)) { modalTitle.textContent = "Unavailable"; modalMessage.textContent = `Sorry, the plate "${plate}" is already taken.`; }
+    else { modalTitle.textContent = "Available!"; modalMessage.textContent = `Good news! The plate "${plate}" is available.`; }
+    modal.classList.remove('hidden');
+});
+closeModal.addEventListener('click', () => { modal.classList.add('hidden'); });
+
+// Reserve plate button (dummy simulation)
+document.getElementById('reservePlate').addEventListener('click', () => {
+    const plate = document.getElementById('reserveInput').value.trim().toUpperCase();
+    if (!plate) { alert("Enter a plate to reserve."); return; }
+    alert(`Plate "${plate}" reserved successfully!`);
+});
+</script>
+</body>
+</html>
